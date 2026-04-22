@@ -3,3 +3,4 @@ Listening to Life – Sonifying Plant Signals with Pure Data _ Unstable Ecologie
 
 
 Figure1. Sketch hacking EMG SENSOR
+Figure 2. PureData architecture
