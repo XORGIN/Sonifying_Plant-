@@ -8,4 +8,20 @@ Figure 3 keywords Puredata;
 
 - Arduino sketch : for arduino nano;
 
-- Driver for windows (CH340 link: https://learn.sparkfun.com/tutorials/how-to-install-ch340-drivers/all?utm_source=chatgpt.com ); 
+
+
+Welcome!  
+Here you can find useful links to install the **CH340 driver** for **Windows** and **macOS**.
+
+## Download the driver
+- [Official WCH website](https://www.wch-ic.com/downloads/ch341ser_exe.html)
+
+## Installation help
+- [SparkFun installation tutorial](https://learn.sparkfun.com/tutorials/how-to-install-ch340-drivers/all)
+- [Adafruit macOS guide](https://learn.adafruit.com/how-to-install-drivers-for-wch-usb-to-serial-chips-ch9102f-ch9102/mac-driver-installation)
+
+## Important
+For recent versions of macOS, you may need to manually allow the driver in **System Settings > Privacy & Security**.
+
+## Supported chips
+CH340 / CH341
