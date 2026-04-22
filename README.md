@@ -27,4 +27,5 @@ For recent versions of macOS, you may need to manually allow the driver in **Sys
 CH340 / CH341
 
 ## Referencie
- [EMG-ECG Arduino]: https://github.com/RonAaron61/EMG-ECG_Arduino
+ [EMG-ECG Arduino]
+https://github.com/RonAaron61/EMG-ECG_Arduino
