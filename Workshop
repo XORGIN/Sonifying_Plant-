@@ -1,0 +1,127 @@
+# Listening to the Living  
+## Translating Plant Signals into Sound with Arduino and Pure Data
+
+This workshop is a simple introduction to capturing weak electrical signals from living systems and transforming them into sound using Arduino and Pure Data.
+
+The goal is not to make a plant “speak” literally, but to build a sensitive chain of translation between a biological signal, an electronic reading, and a sonic form.
+
+---
+
+## 1. Looking at the setup
+
+We begin by identifying the different parts of the device:
+
+- **Arduino Uno**: powers the circuit and reads the analog output  
+- **breadboard**: solderless prototyping support  
+- **LM7660 / ICL7660**: generates a negative voltage from +5V  
+- **AD620**: amplifies a very weak differential signal  
+- **LM358**: filters and shapes the signal  
+- **potentiometer**: adjusts the sensitivity of the circuit  
+- **resistors, capacitors, diode**: stabilize, filter, and protect the signal  
+- **alligator clips**: connect the circuit to electrodes / the plant  
+At this stage, the main aim is to understand the role of each part in the signal chain.
+
+## 2. Capturing a weak signal
+
+The circuit is designed to detect very small electrical variations.
+The signal passes through several steps:
+1. **capture** through electrodes / alligator clips  
+2. **first amplification** with the AD620  
+3. **signal processing and filtering** with the LM358  
+4. **analog reading** by the Arduino  
+The Arduino does not “understand” the plant directly: it simply reads a variation in voltage.
+
+## 3. Sending the data to the computer
+
+Once the analog circuit has amplified and shaped the weak electrical signal, the Arduino reads it through one of its analog input pins, such as **A0**. At this stage, the signal is no longer just an electrical fluctuation inside the circuit: it becomes a stream of numerical values that can be transmitted to a computer.
+The Arduino sends these values through the **serial port**, which is the communication channel created by the USB connection between the board and the computer. In practice, this means that the Arduino continuously outputs numbers representing the changing intensity of the signal over time.
+These values can then be received in **Pure Data** with the object: 
+```pd
+[comport]
+
+##4. Understanding data in Pure Data
+In this workshop, we mainly work with a few essential types of data:
+
+float: a simple number, such as a sensor value, a frequency, a threshold, or a volume level
+bang: a trigger that launches an action
+symbol: text or a command
+list: several elements grouped together
+audio signal: a continuous sound stream
+
+This distinction matters because Pure Data objects do not all accept the same kind of input. Some objects expect numbers, some expect commands, and others work only with audio signals.
+
+For example:
+comport receives serial data from the Arduino
+clip limits a value to a useful range
+t f f f duplicates one incoming number and sends it to several destinations at the same time
+metro generates a regular timing pulse
+random introduces variation
+mtof converts a MIDI note number into an audible frequency
+osc~ creates a waveform
+vline~ shapes sound over time
+lop~ softens the sound by cutting high frequencies
+delwrite~ / delread~ create delay and resonance
+dac~ sends sound to the speakers
+Understanding these objects helps participants see that a patch is not magic: it is a chain of simple operations, each with a clear role.
+
+
+##5.Turning data into sound
+Once the values arrive in Pure Data, they can be turned into sound through a sequence of operations. A simple version of this process can be described like this:
+
+Sensor → Arduino → comport → data processing → sound synthesis → audio output
+
+The first stage is data processing. Incoming values are often unstable, noisy, or too broad in range to be used directly. They may need to be:
+limited,
+smoothed,
+compared to a threshold,
+or distributed across different branches of the patch.
+
+A single sensor value can then control several parameters at once. For instance, the same incoming number can influence:
+the pitch of a sound,
+the opening of a filter,
+the tempo of a pulse,
+the density of sonic events,
+or the amount of echo and resonance.
+
+This is one of the most interesting ideas in Pure Data: a value is not tied to one single meaning. It can be sent to multiple parts of the patch and translated into several simultaneous sonic effects.
+In the next stage, the patch generates sound. An oscillator such as osc~ can produce a simple waveform, while vline~ shapes its evolution in time. A filter such as lop~ can soften the sound, and a delay can add resonance or spatial depth.
+The result is not a direct “sound of the plant,” but a designed sonic response based on the changing values coming from the living signal.
+
+##6. Experimenting
+
+Once the basic patch is working, the workshop opens into experimentation.
+At this point, participants can begin to modify the behavior of the sonic system. The same signal can generate very different results depending on how it is mapped inside the patch.
+For example, participants can:
+
+make the sound softer or brighter
+add more or less delay
+change the shape of the envelope
+slow down or accelerate the triggering of events
+create a denser or more minimal texture
+move from short impulses to long resonant tones
+build a sound world that feels rhythmic, liquid, airy, organic, or unstable
+
+This is where the workshop becomes exploratory rather than purely technical. The goal is not only to make the system work, but to ask how different sonic translations affect our perception of the signal.
+Two people can start from the same incoming data and produce very different listening experiences. One may build something close to drops or pulses; another may create a slow drone or a granular texture. Both are valid interpretations.
+This stage is essential because it shows that sonification is not neutral. It is always shaped by aesthetic choices.
+
+
+##7. Listening differently
+
+This workshop proposes a different mode of listening.
+The aim is not to prove that a plant literally “speaks,” nor to claim that sound reveals a hidden truth in a direct or objective way. Instead, the workshop creates a situation in which weak and usually imperceptible variations become audible through a technical and artistic process.
+What we hear is not the plant alone, and not the machine alone. It is a relationship between:
+a living signal,
+an electronic circuit,
+a microcontroller,
+a software patch,
+and a human act of interpretation.
+
+In that sense, sound becomes an interface. It allows participants to pay attention differently, to imagine differently, and to reflect on how technology can mediate the living world.
+Listening here is therefore not only a technical act. It is also an aesthetic and conceptual one.
+
+
+
+
+```pd
+[comport]
