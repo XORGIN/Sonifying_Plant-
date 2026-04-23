@@ -7,7 +7,7 @@ The goal is not to make a plant “speak” literally, but to build a sensitive 
 
 ---
 
-## 1. Looking at the setup
+## 1. Looking at the setup ( file1, file 2, file3.png)
 
 We begin by identifying the different parts of the device:
 
@@ -20,14 +20,19 @@ We begin by identifying the different parts of the device:
 - **resistors, capacitors, diode**: stabilize, filter, and protect the signal  
 - **alligator clips**: connect the circuit to electrodes / the plant  
 At this stage, the main aim is to understand the role of each part in the signal chain.
-(1. Capter
-« Le vivant produit de très faibles signaux électriques. Ici, des électrodes placées à la surface servent à recueillir ces micro-variations. Dans le README, l’auteur rappelle que le signal est d’abord capté à la surface de la peau, puis amplifié, filtré et amplifié une seconde fois pour devenir exploitable. »
 
-2. Amplifier et filtrer
-« Le cœur du circuit repose sur deux composants principaux : un AD620, qui est un amplificateur d’instrumentation avec gain réglable, puis un LM358 qui sert à amplifier et filtrer encore le signal. Le montage intègre un filtrage passe-bande, car l’auteur vise des signaux biologiques dans une plage approximative de 0 à 500 Hz. Dans son exemple, il indique un passe-haut autour de 2,2 Hz, un passe-bas autour de 480 Hz, et un second étage avec un gain d’environ 100. »
+Amplifier et filtrer
+-AD620:amplificateur d’instrumentation avec gain réglable, 
+-LM358:amplifier et filtrer encore le signal. 
+-Le montage intègre un filtrage passe-bande(plage approximative de 0 à 500 Hz).
+passe-haut autour de 2,2 Hz, 
+un passe-bas autour de 480 Hz,
+un second étage avec un gain d’environ 100. »
 
-3. Adapter le signal pour l’Arduino
-« Le circuit propose deux types de sortie. Une première sortie est décalée autour de 2,5 V grâce à un diviseur de tension : elle permet de voir le signal complet, positif et négatif. Une seconde sortie passe par une diode pour ne garder que la partie positive, ce qui simplifie souvent la lecture de l’EMG quand on veut juste récupérer des pics ou des variations d’intensité. »
+Adapter le signal pour l’Arduino
+« Le circuit propose deux types de sortie:
+-Une première sortie est décalée autour de 2,5 V grâce à un diviseur de tension ( voir le signal complet, positif et négatif.)
+-Une seconde sortie passe par une diode pour ne garder que la partie positive.
 
 
 
